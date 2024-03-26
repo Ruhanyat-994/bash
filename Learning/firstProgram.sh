@@ -1,4 +1,6 @@
 #!/bin/bash
+TODAY=$(date)
+echo "This scan was created on $TODAY"
 DOMAIN=$1
 DIRECTORY=${DOMAIN}_recon
 echo "Creating directory $DIRECTORY."
