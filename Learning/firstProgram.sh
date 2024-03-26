@@ -1,9 +1,9 @@
 #!/bin/bash
-echo "Creating directory $1_recon."
-mkdir $1_recon;
-nmap $1 > $1_recon/nmap
-echo "The results of nmap scan are stored in $1_recon/namp"
-dirsearch -u $1 -e php > $1_recon/dirsearch
-echo "The results of dirsearch scan are stored in $1_recon/dirsearch."
-
-
+DOMAIN=$1
+DIRECTORY=${DOMAIN}_recon
+echo "Creating directory $DIRECTORY."
+mkdir $DIRECTORY
+nmap $DOMAIN > $DIRECTORY/nmap
+echo "The results of nmap is stored in $DIRECTORY/nmap"
+dirsearch -u $DOMAIN -e php > $DIRECTORY/dirsearch
+echo "The results of dirsearch is stored in $DIRECTORY/dirsearch"
