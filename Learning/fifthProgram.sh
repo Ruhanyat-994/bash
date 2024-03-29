@@ -1,6 +1,4 @@
 
-#!/bin/bash
-
 TODAY=$(date)
 echo "The time for the scan is $TODAY"
 
@@ -29,7 +27,7 @@ crt_scan()
 
 }
 
-case $2 in 
+case $2 in
         nmap)
                 nmap_scan
                 ;;
@@ -45,3 +43,21 @@ case $2 in
                 crt_scan
                 ;;
 esac
+
+echo "+++++++++++++Generating recon report from the output file+++++++++++++"
+TODAY=$(date)
+echo "This scan was created on $TODAY" > $DIRECTORY/report
+
+grep -E "^\s*\S+\s+\S+\s+\S+\s*$" $DIRECTORY/nmap >> $DIRECTORY/report
+
+echo "The results for dirsearch:" >> $DIRECTORY/report
+echo "Results for crt.sh:" >> $DIRECTORY/report
+
+jq -r ".[] | .name_value" $DIRECTORY/crt >>  $DIRECTORY/report
+
+
+
+
+
+
+
