@@ -49,6 +49,7 @@ for i; do
     echo "This scan was created on $TODAY" > "$DIRECTORY/report"
 
     if [ -f "$DIRECTORY/nmap" ]; then
+    # -f checks if there is any $DIRECTORY/nmap exists or not
         echo "Results for nmap:" >> "$DIRECTORY/report"
         grep -E "^\s*\S+\s+\S+\s+\S+\s*$" "$DIRECTORY/nmap" >> "$DIRECTORY/report"
     fi
