@@ -1,6 +1,24 @@
+
 #!/bin/bash
 
-source ./scan.lib
+TODAY=$(date)
+echo "The time for the scan is $TODAY"
+
+nmap_scan() {
+    nmap $DOMAIN > "$DIRECTORY/nmap"
+    echo "The results of nmap are stored in $DIRECTORY/nmap"
+}
+
+dirsearch_scan() {
+    dirsearch -u $DOMAIN -e php > "$DIRECTORY/dirsearch"
+    echo "The results of dirsearch are stored in $DIRECTORY/dirsearch"
+}
+
+crt_scan() {
+    curl "https://crt.sh/?q=$DOMAIN&output=json" -o "$DIRECTORY/crt"
+    echo "The results of crt search are stored in $DIRECTORY/crt"
+}
+
 
 while getopts "m:i" OPTION; do
     case $OPTION in
